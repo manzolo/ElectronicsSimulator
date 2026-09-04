@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDU-ELN · Electronics Playground</title>
+<meta name="description" content="An interactive analog electronics simulator — a hand-written circuit solver (MNA + Newton-Raphson) runs your netlist, colours every wire by its potential, animates the currents and puts a multimeter and a two-channel oscilloscope on the bench. Guided levels from Ohm's law to finding the broken part with a probe, and a free sandbox.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230b1a12'/%3E%3Ctext x='8' y='12' font-size='7' font-family='monospace' font-weight='bold' fill='%23e3b341' text-anchor='middle'%3EELN%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="brand-mark">ELN</span>
+    <div class="brand-text">
+      <h1>EDU-ELN <span class="brand-sub">ELECTRONICS PLAYGROUND</span></h1>
+      <span class="brand-tag" data-i18n="tagline"></span>
+    </div>
+  </div>
+  <nav class="top-nav">
+    <button id="btnIntro" class="btn" data-i18n="navIntro"></button>
+    <button id="btnLevels" class="btn" data-i18n="navLevels"></button>
+    <button id="btnSandbox" class="btn" data-i18n="navSandbox"></button>
+    <button id="btnHelp" class="btn btn-ghost" data-i18n-title="help">?</button>
+    <div class="lang-switch" role="group" aria-label="language">
+      <button data-lang="it">IT</button><button data-lang="en">EN</button>
+    </div>
+  </nav>
+</header>
+
+<main class="workbench">
+  <section class="col-lesson" id="lessonPanel"></section>
+
+  <section class="col-main">
+    <div class="card card-schematic">
+      <div class="card-head">
+        <span class="card-title" data-i18n="panelSchematic"></span>
+        <div class="toolbar">
+          <button id="btnRun" class="btn btn-primary" title="Ctrl+Enter" data-i18n="run"></button>
+          <button id="btnPause" class="btn" hidden data-i18n="pause"></button>
+          <button id="btnStep" class="btn" title="F8" data-i18n="step"></button>
+          <button id="btnReset" class="btn" data-i18n="reset"></button>
+          <label class="speed">
+            <span data-i18n="speed"></span>
+            <input id="speed" type="range" min="0" max="5" value="3">
+          </label>
+        </div>
+      </div>
+      <div id="schematic" class="netscreen sch-host"></div>
+    </div>
+
+    <div class="card card-bench">
+      <div class="card-head"><span class="card-title" data-i18n="panelInstruments"></span></div>
+      <div class="bench">
+        <div id="meter" class="meter-host"></div>
+        <div id="scope" class="netscreen scope-host"></div>
+      </div>
+    </div>
+
+    <div class="card card-editor">
+      <div class="card-head"><span class="card-title" data-i18n="panelNetlist"></span></div>
+      <div id="editor"></div>
+      <div id="statusLine" class="status-line"></div>
+    </div>
+  </section>
+
+  <section class="col-inspect">
+    <div class="card">
+      <div class="card-head"><span class="card-title" data-i18n="panelBuilder"></span></div>
+      <div id="builder"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-title" data-i18n="panelReadings"></span></div>
+      <div id="readings"></div>
+    </div>
+    <div class="card" id="casesCard">
+      <div class="card-head"><span class="card-title" data-i18n="panelCases"></span></div>
+      <div id="casesPanel"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-title" data-i18n="panelEvents"></span></div>
+      <div id="eventLog"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>EDU-ELN · <a href="https://github.com/manzolo/ElectronicsSimulator" target="_blank" rel="noopener">GitHub</a></span>
+  <a id="linkSegnala" class="foot-link" href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener" data-i18n="segnala" data-i18n-title="segnalaTitle"></a>
+</footer>
+
+<div id="levelSelectOverlay" class="overlay" hidden></div>
+
+<div id="introOverlay" class="overlay" hidden>
+  <div class="modal modal-help">
+    <div class="modal-head">
+      <h2 id="introTitle"></h2>
+      <button class="btn btn-ghost modal-close" id="introClose" aria-label="close">✕</button>
+    </div>
+    <div id="introBody" class="help-body"></div>
+    <div class="intro-foot">
+      <button class="btn btn-primary" id="introStart"></button>
+    </div>
+  </div>
+</div>
+
+<div id="helpOverlay" class="overlay" hidden>
+  <div class="modal modal-help">
+    <div class="modal-head">
+      <h2 id="helpTitle"></h2>
+      <button class="btn btn-ghost modal-close" id="helpClose" aria-label="close">✕</button>
+    </div>
+    <div id="helpBody" class="help-body"></div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

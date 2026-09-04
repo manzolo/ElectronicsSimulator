@@ -1,0 +1,18 @@
+{
+  "name": "edu-electronics-playground",
+  "version": "1.0.0",
+  "description": "EDU-ELN — an interactive analog electronics simulator: a hand-written circuit solver (modified nodal analysis + Newton-Raphson) runs your netlist, colours every wire by its potential, animates the currents, and puts a multimeter and a two-channel oscilloscope on the bench. Guided levels — from Ohm's law to finding the broken part with a probe — and a free sandbox. Zero dependencies, zero build.",
+  "type": "module",
+  "private": true,
+  "homepage": "https://manzolo.github.io/ElectronicsSimulator/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manzolo/ElectronicsSimulator.git"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "e2e": "node tools/e2e.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "license": "MIT"
+}
