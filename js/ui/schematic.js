@@ -124,7 +124,7 @@ export function createSchematic(container, { onProbeNode, onProbeComp } = {}) {
     // small circuits must not blow up to poster size; big ones scale down to
     // fit and only scroll when they would become illegible
     svg.style.maxWidth = `${Math.round(W * 1.6)}px`;
-    if (cols > 14) svg.style.minWidth = `${Math.round(W * 0.8)}px`;
+    if (cols > 8) svg.style.minWidth = `${Math.round(W * 0.8)}px`;
     container.appendChild(svg);
     railY = new Map(rank.map((n, i) => [n, TOP + i * ROW_H]));
     const x0 = LABEL_W + 24;
