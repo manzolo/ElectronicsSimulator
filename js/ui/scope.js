@@ -15,19 +15,26 @@ function niceStep(x) {
   return 100;
 }
 
-export function createScope(container) {
+export function createScope(container, { onAddScope, onAddTran } = {}) {
   let channels = [];     // [{node, ni}]
   let stop = 0;          // s
   let vdiv = 1;
   let canvas = null;
   let msg = null;
   let lastDrawn = -1;
+  let suggest = null;   // node to offer when there is no channel
 
   function ensureCanvas() {
     if (canvas) return;
     container.innerHTML = '<canvas class="scope-canvas"></canvas><div class="scope-msg" hidden></div><div class="scope-legend"></div>';
     canvas = container.querySelector('canvas');
     msg = container.querySelector('.scope-msg');
+    msg.addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      if (b.dataset.act === 'scope') onAddScope?.(suggest);
+      if (b.dataset.act === 'tran') onAddTran?.();
+    });
   }
 
   function size() {
@@ -51,6 +58,16 @@ export function createScope(container) {
     ctx.strokeStyle = 'rgba(87,227,137,0.4)';
     ctx.beginPath(); ctx.moveTo(0, h / 2); ctx.lineTo(w, h / 2); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(w / 2, 0); ctx.lineTo(w / 2, h); ctx.stroke();
+  }
+
+  // the empty states explain WHY and offer the one-click way out
+  function message() {
+    if (channels.length && stop) return '';
+    if (!channels.length) {
+      const btn = suggest ? `<button class="btn btn-ghost scope-add" data-act="scope">${t('scopeTry', suggest === '0' ? 'gnd' : suggest)}</button>` : '';
+      return `<div>${t('scopeEmpty')}</div>${btn}`;
+    }
+    return `<div>${t('scopeNoTran')}</div><button class="btn btn-ghost scope-add" data-act="tran">${t('scopeAddTran')}</button>`;
   }
 
   function legend() {
@@ -95,17 +112,17 @@ export function createScope(container) {
 
   return {
     // channels: [{node, ni}], stop (s or 0 for DC), range: max |v| expected
-    setup({ channels: ch = [], stop: st = 0, range = 1 } = {}) {
+    setup({ channels: ch = [], stop: st = 0, range = 1, suggest: sg = null } = {}) {
       ensureCanvas();
-      channels = ch.slice(0, 2); stop = st;
+      channels = ch.slice(0, 2); stop = st; suggest = sg;
       vdiv = niceStep(Math.max(1e-3, range) / 3.6);
       msg.hidden = channels.length > 0 && stop > 0;
-      msg.innerHTML = !channels.length ? t('scopeEmpty') : !stop ? t('scopeNoTran') : '';
+      msg.innerHTML = message();
       legend();
       draw([], 0);
     },
     draw,
-    clear() { ensureCanvas(); channels = []; stop = 0; msg.hidden = false; msg.innerHTML = t('scopeEmpty'); legend(); draw([], 0); },
-    refresh() { if (canvas) { legend(); msg.innerHTML = !channels.length ? t('scopeEmpty') : !stop ? t('scopeNoTran') : ''; } },
+    clear() { ensureCanvas(); channels = []; stop = 0; suggest = null; msg.hidden = false; msg.innerHTML = message(); legend(); draw([], 0); },
+    refresh() { if (canvas) { legend(); msg.innerHTML = message(); } },
   };
 }

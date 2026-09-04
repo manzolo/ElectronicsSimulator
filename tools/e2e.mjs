@@ -127,6 +127,12 @@ async function main() {
     }))()`);
     console.log('after run:', JSON.stringify(after));
 
+    // the scope's empty state offers a one-click way in: .scope in + .tran 20m
+    await evalJS(`document.querySelector('.scope-add[data-act="scope"]')?.click()`);
+    await sleep(600);
+    const scoped = await evalJS(`(() => ({ user: document.querySelector('.nl-input').value, legend: document.querySelector('.scope-legend')?.textContent ?? '', msgHidden: document.querySelector('.scope-msg')?.hidden }))()`);
+    console.log('scope one-click:', JSON.stringify(scoped));
+
     // level 4: the starter burns the LED — the engine must say so
     await evalJS(`location.hash = '#led'`);
     await sleep(600);
@@ -181,6 +187,7 @@ async function main() {
     if (!after || !after.banner.includes('banner-pass')) problems.push('pass banner missing on level 1 (verify failed)');
     if (!after || !/20 mA/.test(after.meter.join(' '))) problems.push('meter did not read 20 mA');
     if (!after || !after.caseVerdicts.every((v) => v === 'ok')) problems.push('case verdicts not all ok');
+    if (!scoped || !/\.scope in/.test(scoped.user) || !/\.tran 20m/.test(scoped.user) || !/CH1 in/.test(scoped.legend) || !scoped.msgHidden) problems.push('scope empty-state button did not add .scope/.tran');
     if (!burned || burned.burned < 1 || !burned.burnEvt) problems.push('LED did not burn with 47 Ω');
     if (!sick || !sick.banner.includes('banner-fail')) problems.push('sick board should fail');
     if (!sick || !/CH1/.test(sick.legend)) problems.push('scope legend missing');

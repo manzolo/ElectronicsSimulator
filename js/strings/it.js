@@ -29,8 +29,10 @@ export default {
   statusDoneBurn: 'Fatto in {0} tick — ma qualcosa è bruciato: {1}.',
 
   meterEmpty: 'Nessuna sonda. Aggiungi <code>.probe nodo</code> o <code>.probe I(R1)</code>, oppure clicca un nodo o un componente nello schema.',
-  scopeEmpty: 'Nessun canale. Aggiungi <code>.scope nodo</code> (e <code>.tran</code> per vedere il tempo).',
-  scopeNoTran: 'Circuito in continua: lo scopio mostra una riga piatta. Aggiungi <code>.tran 20m</code> per il tempo.',
+  scopeEmpty: 'L\'oscilloscopio disegna una tensione <b>nel tempo</b> — e qui nessun nodo è sul suo schermo. Nei livelli in continua (fino al 5) non c\'è ancora niente che cambi; dal livello 6 la scheda accende lo scopio da sola. Per provarlo comunque: <code>.scope nodo</code> tra le tue righe, oppure',
+  scopeNoTran: 'C\'è un canale ma il circuito è in continua: senza tempo lo scopio mostrerebbe una riga piatta. Per vedere 20 millisecondi:',
+  scopeTry: 'metti lo scopio su «{0}» per 20 ms →',
+  scopeAddTran: 'aggiungi .tran 20m →',
   scopeDiv: '{0}/div',
   readingsEmpty: 'Esegui per leggere tensioni, correnti e potenze.',
   colPart: 'parte', colValue: 'valore', colV: 'V', colI: 'I', colP: 'P', colStress: 'limite',

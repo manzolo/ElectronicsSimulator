@@ -29,8 +29,10 @@ export default {
   statusDoneBurn: 'Done in {0} ticks — but something burned: {1}.',
 
   meterEmpty: 'No probe. Add <code>.probe node</code> or <code>.probe I(R1)</code>, or click a node or a part in the schematic.',
-  scopeEmpty: 'No channel. Add <code>.scope node</code> (and <code>.tran</code> to see time).',
-  scopeNoTran: 'DC circuit: the scope shows a flat line. Add <code>.tran 20m</code> for time.',
+  scopeEmpty: 'The oscilloscope draws a voltage <b>over time</b> — and no node is on its screen here. In the DC levels (up to 5) nothing changes yet; from level 6 the board switches the scope on for you. To try it anyway: <code>.scope node</code> in your lines, or',
+  scopeNoTran: 'There is a channel but the circuit is DC: without time the scope would show a flat line. To see 20 milliseconds:',
+  scopeTry: 'put the scope on “{0}” for 20 ms →',
+  scopeAddTran: 'add .tran 20m →',
   scopeDiv: '{0}/div',
   readingsEmpty: 'Run to read voltages, currents and powers.',
   colPart: 'part', colValue: 'value', colV: 'V', colI: 'I', colP: 'P', colStress: 'limit',

@@ -236,7 +236,9 @@ a { color: var(--phosphor); }
 .meter-empty { font-size: 0.74rem; color: var(--ink-soft); line-height: 1.5; background: #1a1409; border: 2px solid #0d0a04; border-radius: 7px; padding: 0.5rem 0.6rem; height: 100%; }
 .scope-host { min-height: 224px; }
 .scope-canvas { display: block; width: 100%; height: 220px; }
-.scope-msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem; color: var(--phosphor-dim); font-size: 0.78rem; z-index: 6; pointer-events: none; }
+.scope-msg { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 0.6rem; align-items: center; justify-content: center; text-align: center; padding: 1rem 2rem; color: var(--phosphor-dim); font-size: 0.8rem; line-height: 1.5; z-index: 6; }
+.scope-msg b { color: var(--phosphor); }
+.scope-add { color: var(--amber-glow); border: 1px dashed var(--amber-dark); font-size: 0.76rem; }
 .scope-legend { position: absolute; left: 8px; top: 6px; display: flex; gap: 0.9rem; font-family: var(--mono); font-size: 0.66rem; z-index: 6; pointer-events: none; }
 .scope-time { color: var(--phosphor-dim); }
 

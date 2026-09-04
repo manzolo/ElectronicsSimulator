@@ -37,7 +37,10 @@ const schematic = createSchematic(document.getElementById('schematic'), {
   onProbeNode: (node) => toggleProbe(node === '0' ? 'gnd' : node),
   onProbeComp: (name) => toggleProbe(`I(${name.toUpperCase()})`),
 });
-const scope = createScope(document.getElementById('scope'));
+const scope = createScope(document.getElementById('scope'), {
+  onAddScope: (node) => appendUserLines([`.scope ${node === '0' ? 'gnd' : node}`, ...(sim?.tran ? [] : ['.tran 20m'])]),
+  onAddTran: () => appendUserLines(['.tran 20m']),
+});
 const meter = createMeter(document.getElementById('meter'));
 const readings = createReadings(document.getElementById('readings'));
 const builder = createBuilder(document.getElementById('builder'), { onChange: onBuilderWrite });
@@ -155,7 +158,7 @@ function buildMachine() {
   railRank = rank;
   schematic.build(circuit, rank, maxAbsVoltage(st));
   const scopes = built.parsed.directives.scopes.map((s) => ({ node: s.node, ni: circuit.idx.get(s.node) }));
-  scope.setup({ channels: scopes, stop: st.tran?.stop ?? 0, range: maxAbsVoltage(st, scopes.map((s) => s.node)) });
+  scope.setup({ channels: scopes, stop: st.tran?.stop ?? 0, range: maxAbsVoltage(st, scopes.map((s) => s.node)), suggest: rank.find((n) => n !== '0') ?? null });
   meter.setup(built.parsed.directives.probes);
   readings.build(circuit);
   builder.render(user, level ? level.allowed : null);
@@ -244,6 +247,19 @@ function onBuilderWrite(text) {
   editor.setUser(text);
   onUserEdit(text);
   buildMachine();
+}
+
+// Append directive lines (from the scope's empty-state buttons), rebuild, and
+// re-run instantly if the circuit had already been run.
+function appendUserLines(newLines) {
+  const lines = editor.getUser().split('\n').filter((l, i, a) => !(i === a.length - 1 && l.trim() === ''));
+  const have = new Set(lines.map((l) => l.trim().toLowerCase()));
+  for (const l of newLines) if (!have.has(l.toLowerCase())) lines.push(l);
+  const text = lines.join('\n').replace(/^\n+/, '');
+  const rerun = hadRun;
+  editor.setUser(text);
+  onUserEdit(text);
+  if (buildMachine() && rerun) { runToCompletion(sim); handleHalt(); }
 }
 
 // Click on a rail / part: add (or remove) the matching .probe line, rebuild,
