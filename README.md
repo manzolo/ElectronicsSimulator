@@ -44,6 +44,28 @@ issue](https://github.com/manzolo/ElectronicsSimulator/issues/new)**: è esattam
 cui questo lab può diventare giusto. Nel sito il link «Segnala un problema» precompila già
 livello, lingua e stato del motore.
 
+Una verifica indipendente però c'è, e la puoi rifare tu. Il bottone **«Seconda opinione su
+Falstad»** esporta il circuito corrente in [CircuitJS1](https://www.falstad.com/circuit/) di
+Paul Falstad — un altro simulatore, di un altro autore, con un altro motore — e lo apre lì
+(`tools/xcheck-falstad.mjs` fa la stessa cosa in Chrome headless per i livelli in continua). Il
+risultato, al 2026-09-05:
+
+| Livello | Nodo | EDU-ELN | CircuitJS | Δ |
+|---|---|---|---|---|
+| partitore | out | 3,3364 V | 3,3364 V | 0,0 mV |
+| partitore sotto carico | out | 3,3962 V | 3,3962 V | 0,0 mV |
+| Wheatstone | a / b | 6,1783 / 6,1650 V | 6,1783 / 6,1650 V | 0,0 mV |
+| LED | out | 1,997 V | 1,882 V | 115 mV |
+| zener | out | 5,113 V | 5,130 V | 17 mV |
+| BJT saturo | c | 0,1015 V | 0,1005 V | 1,0 mV |
+| BJT saturo | b | 0,780 V | 0,720 V | 59 mV |
+
+Sui circuiti **lineari** i due risolutori coincidono al decimo di millivolt: il motore fa i
+conti giusti. Sui **semiconduttori** differiscono di qualche decina di millivolt, ed è atteso:
+sono i *modelli* a essere diversi (il nostro LED fa 2,0 V a 15 mA, quello di Falstad 1,9;
+tensioni di soglia e correnti di saturazione non sono le stesse) — come due diodi di marca
+diversa sul banco. Questo non dice che i modelli siano "giusti", dice che il risolutore lo è.
+
 ## Perché un motore scritto a mano
 
 È l'unico lab della collana con un modello **continuo** e non simbolico: la
@@ -137,8 +159,9 @@ Deploy su GitHub Pages da `main`/root così com'è (`.nojekyll`, percorsi relati
 ## Sviluppo / test
 
 ```
-npm test             # node --test — unità, parser, fisica del risolutore, tutti i 14 livelli, anti-trucco
-npm run e2e          # smoke test headless su Chrome: primer, livello 1, il LED che brucia, la riparazione del capstone, cambio lingua
+npm test                       # node --test — unità, parser, fisica del risolutore, tutti i 14 livelli, anti-trucco, export Falstad
+npm run e2e                    # smoke test headless su Chrome: primer, livello 1, il LED che brucia, la riparazione del capstone, cambio lingua
+node tools/xcheck-falstad.mjs  # cross-check dei livelli in continua contro CircuitJS1 su falstad.com (serve rete)
 ```
 
 Il core (`js/core/`) è completamente DOM-free e deterministico, quindi

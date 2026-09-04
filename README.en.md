@@ -43,6 +43,28 @@ issue](https://github.com/manzolo/ElectronicsSimulator/issues/new)**: that is ex
 lab can become right. On the site, the "Report a problem" link prefills level, language and
 engine state for you.
 
+There is an independent check, though, and you can repeat it. The **"Second opinion on
+Falstad"** button exports the current circuit to Paul Falstad's
+[CircuitJS1](https://www.falstad.com/circuit/) — another simulator, by another author, with
+another engine — and opens it there (`tools/xcheck-falstad.mjs` does the same in headless Chrome
+for the DC levels). The result, as of 2026-09-05:
+
+| Level | Node | EDU-ELN | CircuitJS | Δ |
+|---|---|---|---|---|
+| divider | out | 3.3364 V | 3.3364 V | 0.0 mV |
+| loaded divider | out | 3.3962 V | 3.3962 V | 0.0 mV |
+| Wheatstone | a / b | 6.1783 / 6.1650 V | 6.1783 / 6.1650 V | 0.0 mV |
+| LED | out | 1.997 V | 1.882 V | 115 mV |
+| Zener | out | 5.113 V | 5.130 V | 17 mV |
+| saturated BJT | c | 0.1015 V | 0.1005 V | 1.0 mV |
+| saturated BJT | b | 0.780 V | 0.720 V | 59 mV |
+
+On **linear** circuits the two solvers agree to a tenth of a millivolt: the engine does the
+arithmetic right. On **semiconductors** they differ by a few tens of millivolts, as expected:
+the *models* are different (our LED reads 2.0 V at 15 mA, Falstad's 1.9; threshold voltages
+and saturation currents are not the same) — like two diodes of different brands on the bench.
+This does not say the models are "right"; it says the solver is.
+
 ## Why a hand-written engine
 
 This is the only lab in the series with a **continuous** rather than symbolic
@@ -134,8 +156,9 @@ Deploys to GitHub Pages from `main`/root as-is (`.nojekyll`, relative paths).
 ## Development / tests
 
 ```
-npm test             # node --test — units, parser, solver physics, all 14 levels, anti-cheat
-npm run e2e          # headless Chrome smoke test: primer, level 1, the LED that burns, repairing the capstone, language switch
+npm test                       # node --test — units, parser, solver physics, all 14 levels, anti-cheat, Falstad export
+npm run e2e                    # headless Chrome smoke test: primer, level 1, the LED that burns, repairing the capstone, language switch
+node tools/xcheck-falstad.mjs  # cross-check of the DC levels against CircuitJS1 on falstad.com (needs network)
 ```
 
 The core (`js/core/`) is fully DOM-free and deterministic, hence testable

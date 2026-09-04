@@ -101,7 +101,9 @@ export default {
   introTitle: 'Mai acceso un saldatore? Parti da qui',
   introStart: 'Capito — portami al livello 1 →',
 
-  honestNote: '⚠️ Costruito <b>con l\'AI per imparare</b>, in una sera: può contenere errori. Se un valore o una spiegazione non ti tornano, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">apri una issue</a>.',
+  honestNote: '⚠️ Costruito <b>con l\'AI per imparare</b>, in una sera: può contenere errori. Il risolutore coincide con CircuitJS al decimo di millivolt sui circuiti lineari (i modelli dei semiconduttori differiscono di qualche decina di mV) — prova tu col bottone «Seconda opinione». Se un valore o una spiegazione non ti tornano, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">apri una issue</a>.',
+  falstad: 'Seconda opinione su Falstad ↗',
+  falstadTitle: "Apre questo stesso circuito in CircuitJS (falstad.com), un simulatore indipendente scritto da un'altra persona con un altro motore. Se i numeri non coincidono, uno dei due sbaglia: apri una issue. Uno STEP diventa un'onda quadra a 0,25 Hz; nei livelli di riparazione si esporta la scheda com'è scritta (sana).",
   segnala: 'Segnala un problema',
   segnalaTitle: 'Apre su GitHub una segnalazione già compilata con livello, lingua, stato del motore e browser.',
   segnalaCorpo: '**Cosa non funziona?**\n\nDescrivi qui: cosa hai fatto, cosa ti aspettavi, cosa è successo.\n\n---\n_Dati raccolti dalla pagina (controlla e correggi se serve):_\n\n- Pagina: {0}\n- Livello: {1}\n- Lingua: {2}\n- Stato: {3}\n- Browser: `{4}`\n',
@@ -138,7 +140,7 @@ export default {
     <h3>Livelli</h3>
     <p>Ogni livello ti dà una scheda (bloccata) e ti chiede di aggiungere o sostituire qualcosa. La verifica misura il circuito su più casi — alcuni mostrati, altri nascosti con tolleranze diverse — così passa un progetto che regge, non un colpo di fortuna.</p>
     <h3>Una nota onesta</h3>
-    <p>Questo laboratorio l'ho <b>buttato giù con l'AI</b> (Claude Code), in una sera, per <b>imparare io in prima persona</b>: risolutore, modelli, livelli e testi li ha scritti l'AI su mie indicazioni, e <b>non sono in grado di garantire che sia tutto corretto</b>. I test tornano con le formule del manuale, ma un test scritto dalla stessa mano che ha scritto il codice non è una revisione. Se qualcosa non ti torna, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">apri una issue</a>: è così che può diventare giusto.</p>`,
+    <p>Questo laboratorio l'ho <b>buttato giù con l'AI</b> (Claude Code), in una sera, per <b>imparare io in prima persona</b>: risolutore, modelli, livelli e testi li ha scritti l'AI su mie indicazioni, e <b>non sono in grado di garantire che sia tutto corretto</b>. I test tornano con le formule del manuale, ma un test scritto dalla stessa mano che ha scritto il codice non è una revisione. Una verifica indipendente c'è: il bottone <b>Seconda opinione su Falstad</b> apre lo stesso circuito in CircuitJS — sui circuiti lineari coincidono al decimo di millivolt, sui semiconduttori i modelli differiscono di qualche decina di mV (dettagli nel README). Se qualcosa non ti torna, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">apri una issue</a>: è così che può diventare giusto.</p>`,
 
   // ---- codici di errore del parser / del motore ----
   errUnknownElement: 'Non so cosa sia “{0}”: le parti iniziano per R, C, L, V, I, D o Q.',

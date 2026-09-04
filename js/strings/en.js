@@ -101,7 +101,9 @@ export default {
   introTitle: 'Never held a soldering iron? Start here',
   introStart: 'Got it — take me to level 1 →',
 
-  honestNote: '⚠️ Built <b>with AI, to learn</b>, in one evening: it may contain errors. If a value or an explanation looks wrong, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">open an issue</a>.',
+  honestNote: '⚠️ Built <b>with AI, to learn</b>, in one evening: it may contain errors. The solver agrees with CircuitJS to a tenth of a millivolt on linear circuits (semiconductor models differ by a few tens of mV) — try it yourself with the "Second opinion" button. If a value or an explanation looks wrong, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">open an issue</a>.',
+  falstad: 'Second opinion on Falstad ↗',
+  falstadTitle: 'Opens this very circuit in CircuitJS (falstad.com), an independent simulator by another author with another engine. If the numbers disagree, one of the two is wrong: open an issue. A STEP becomes a 0.25 Hz square wave; in the repair levels the board is exported as written (healthy).',
   segnala: 'Report a problem',
   segnalaTitle: 'Opens a GitHub issue prefilled with level, language, engine state and browser.',
   segnalaCorpo: '**What is wrong?**\n\nDescribe here: what you did, what you expected, what happened.\n\n---\n_Data collected from the page (check and correct if needed):_\n\n- Page: {0}\n- Level: {1}\n- Language: {2}\n- State: {3}\n- Browser: `{4}`\n',
@@ -138,7 +140,7 @@ export default {
     <h3>Levels</h3>
     <p>Each level hands you a board (locked) and asks you to add or replace something. Verification measures the circuit on several cases — some shown, some hidden with different tolerances — so a design that holds passes, a lucky shot does not.</p>
     <h3>An honest note</h3>
-    <p>I <b>put this lab together with AI</b> (Claude Code), in one evening, <b>to learn the subject myself</b>: solver, models, levels and texts were written by the AI on my directions, and <b>I cannot guarantee that everything is correct</b>. The tests agree with the textbook formulas, but a test written by the same hand that wrote the code is not a review. If something looks wrong, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">open an issue</a>: that is how it can become right.</p>`,
+    <p>I <b>put this lab together with AI</b> (Claude Code), in one evening, <b>to learn the subject myself</b>: solver, models, levels and texts were written by the AI on my directions, and <b>I cannot guarantee that everything is correct</b>. The tests agree with the textbook formulas, but a test written by the same hand that wrote the code is not a review. There is an independent check: the <b>Second opinion on Falstad</b> button opens the same circuit in CircuitJS — linear circuits agree to a tenth of a millivolt, semiconductor models differ by a few tens of mV (details in the README). If something looks wrong, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">open an issue</a>: that is how it can become right.</p>`,
 
   // ---- parser / engine error codes ----
   errUnknownElement: 'Unknown part “{0}”: parts start with R, C, L, V, I, D or Q.',

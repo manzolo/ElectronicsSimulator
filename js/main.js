@@ -23,6 +23,7 @@ import { createEventLog } from './ui/eventlog.js';
 import { createCasesPanel } from './ui/casesPanel.js';
 import { createLevelPanel } from './ui/levelPanel.js';
 import { createLevelSelect } from './ui/levelSelect.js';
+import { toFalstad, falstadUrl } from './ui/falstad.js';
 
 initLang();
 
@@ -62,6 +63,7 @@ let machineStale = true;
 let visibleCases = [];
 let selectedCase = 0;
 let hadRun = false; // the user has seen this build run to the end
+let railRank = [];  // node order of the current schematic, reused by the Falstad export
 
 const player = new Player({
   onEvents: handleEvents,
@@ -150,6 +152,7 @@ function buildMachine() {
   const preview = runHeadless({ fixture, user, faults });
   const st = preview.state;
   const rank = rankNodes(st);
+  railRank = rank;
   schematic.build(circuit, rank, maxAbsVoltage(st));
   const scopes = built.parsed.directives.scopes.map((s) => ({ node: s.node, ni: circuit.idx.get(s.node) }));
   scope.setup({ channels: scopes, stop: st.tran?.stop ?? 0, range: maxAbsVoltage(st, scopes.map((s) => s.node)) });
@@ -381,6 +384,12 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('levelSelectOverlay').hidden = true;
     if (!introOverlay.hidden) closeIntro();
   }
+});
+
+// «Seconda opinione»: the same circuit, exported to CircuitJS at click time.
+document.getElementById('btnFalstad').addEventListener('click', (e) => {
+  if (!circuit) { e.preventDefault(); return; }
+  e.currentTarget.href = falstadUrl(toFalstad(circuit, railRank, { nominal: true }));
 });
 
 // «Segnala un problema»: the href is built AT CLICK time, when the data is

@@ -84,6 +84,7 @@ a { color: var(--phosphor); }
 .btn-primary { color: var(--screen); background: linear-gradient(#f0c65a, var(--amber)); border-color: var(--amber-dark); box-shadow: 0 2px 0 var(--amber-dark), 0 3px 6px rgb(227 179 65 / 0.25); }
 .btn-ghost { background: transparent; box-shadow: none; border-color: transparent; color: var(--ink-soft); }
 .btn-ghost:active { transform: none; }
+.btn-falstad { font-size: 0.68rem; text-decoration: none; color: var(--amber); border: 1px dashed var(--panel-edge); padding: 0.25rem 0.6rem; }
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
 /* ---------- cards & engraved labels ---------- */
