@@ -174,7 +174,10 @@ a { color: var(--phosphor); }
 .toolbar { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
 .speed { display: flex; align-items: center; gap: 0.4rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-left: 0.3rem; }
 .speed input { width: 84px; accent-color: var(--amber); }
-.foot { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 1.2rem 0.9rem; font-size: 0.72rem; color: var(--ink-soft); }
+.foot { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem 1.2rem; padding: 0.5rem 1.2rem 0.9rem; font-size: 0.72rem; color: var(--ink-soft); }
+.foot-honest { flex: 1 1 100%; color: var(--ink); background: rgb(227 179 65 / 0.08); border-left: 3px solid var(--amber); border-radius: 0 6px 6px 0; padding: 0.4rem 0.7rem; }
+.foot-honest a { color: var(--amber-glow); }
+.help-body .honest { background: rgb(227 179 65 / 0.08); border-left: 3px solid var(--amber); border-radius: 0 6px 6px 0; padding: 0.5rem 0.7rem; }
 .foot-link { color: var(--ink-soft); text-decoration: underline dotted; }
 
 /* ---------- screen inset (shared) ---------- */

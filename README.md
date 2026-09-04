@@ -31,6 +31,19 @@ altri fratelli: [EDU-SQL](https://github.com/manzolo/SqlSimulator),
 [EDU-GIT](https://github.com/manzolo/GitSimulator) e
 [EDU-BRANCH](https://github.com/manzolo/GitBranchingSimulator).
 
+## Una nota onesta
+
+Questo laboratorio l'ho **buttato giù con l'AI** (Claude Code), in una sera, per **imparare io
+in prima persona**: il risolutore, i modelli dei componenti, i livelli e questi stessi testi li
+ha scritti l'AI su mie indicazioni, e **io non sono in grado di garantire che sia tutto
+corretto**. I test confrontano il motore con le formule del manuale (partitore, 1/e, −3 dB,
+ripple ≈ I/(2f·C), I<sub>c</sub> = β·I<sub>b</sub>) e tornano — ma un test scritto dalla stessa
+mano che ha scritto il codice non è una revisione. Se trovi un valore che non ti torna, un
+modello troppo semplificato o una spiegazione sbagliata, **[apri una
+issue](https://github.com/manzolo/ElectronicsSimulator/issues/new)**: è esattamente il modo in
+cui questo lab può diventare giusto. Nel sito il link «Segnala un problema» precompila già
+livello, lingua e stato del motore.
+
 ## Perché un motore scritto a mano
 
 È l'unico lab della collana con un modello **continuo** e non simbolico: la

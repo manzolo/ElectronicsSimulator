@@ -101,6 +101,7 @@ export default {
   introTitle: 'Mai acceso un saldatore? Parti da qui',
   introStart: 'Capito — portami al livello 1 →',
 
+  honestNote: '⚠️ Costruito <b>con l\'AI per imparare</b>, in una sera: può contenere errori. Se un valore o una spiegazione non ti tornano, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">apri una issue</a>.',
   segnala: 'Segnala un problema',
   segnalaTitle: 'Apre su GitHub una segnalazione già compilata con livello, lingua, stato del motore e browser.',
   segnalaCorpo: '**Cosa non funziona?**\n\nDescrivi qui: cosa hai fatto, cosa ti aspettavi, cosa è successo.\n\n---\n_Dati raccolti dalla pagina (controlla e correggi se serve):_\n\n- Pagina: {0}\n- Livello: {1}\n- Lingua: {2}\n- Stato: {3}\n- Browser: `{4}`\n',
@@ -135,7 +136,9 @@ export default {
     <h3>I limiti sono veri</h3>
     <p>Una resistenza da ¼ W con 0,3 W sopra <b>brucia</b> e si apre; un LED oltre 30 mA idem; uno zener sopra 0,5 W, un transistor sopra 1,5 W o 1 A. Nei transitori la sollecitazione è mediata (inerzia termica), così uno spunto di pochi millisecondi non uccide un raddrizzatore.</p>
     <h3>Livelli</h3>
-    <p>Ogni livello ti dà una scheda (bloccata) e ti chiede di aggiungere o sostituire qualcosa. La verifica misura il circuito su più casi — alcuni mostrati, altri nascosti con tolleranze diverse — così passa un progetto che regge, non un colpo di fortuna.</p>`,
+    <p>Ogni livello ti dà una scheda (bloccata) e ti chiede di aggiungere o sostituire qualcosa. La verifica misura il circuito su più casi — alcuni mostrati, altri nascosti con tolleranze diverse — così passa un progetto che regge, non un colpo di fortuna.</p>
+    <h3>Una nota onesta</h3>
+    <p>Questo laboratorio l'ho <b>buttato giù con l'AI</b> (Claude Code), in una sera, per <b>imparare io in prima persona</b>: risolutore, modelli, livelli e testi li ha scritti l'AI su mie indicazioni, e <b>non sono in grado di garantire che sia tutto corretto</b>. I test tornano con le formule del manuale, ma un test scritto dalla stessa mano che ha scritto il codice non è una revisione. Se qualcosa non ti torna, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">apri una issue</a>: è così che può diventare giusto.</p>`,
 
   // ---- codici di errore del parser / del motore ----
   errUnknownElement: 'Non so cosa sia “{0}”: le parti iniziano per R, C, L, V, I, D o Q.',

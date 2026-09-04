@@ -8,6 +8,12 @@ export const INTRO = {
 <p>Benvenuto sul banco. Questa pagina spiega <b>da zero</b> le idee che
 incontrerai nei livelli: niente formule difficili, cinque minuti di lettura.
 Puoi riaprirla quando vuoi dal bottone <b>Basi</b> in alto.</p>
+<p class="honest">⚠️ <b>Una cosa prima di tutto.</b> Questo laboratorio l'ho buttato giù
+<b>con l'AI, per imparare io in prima persona</b>, in una sera: risolutore, modelli e testi li ha
+scritti l'AI su mie indicazioni, e non sono in grado di garantire che sia tutto corretto. I test
+tornano con le formule, ma se un valore o una spiegazione non ti convincono, hai probabilmente
+ragione tu: <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank"
+rel="noopener">apri una issue</a>. È così che può diventare giusto.</p>
 
 <h3>Tre parole: tensione, corrente, resistenza</h3>
 <p>Pensa all'acqua in un tubo. La <b>tensione</b> (volt, V) è la
@@ -93,6 +99,12 @@ Buon lavoro.</p>`,
 <p>Welcome to the bench. This page explains <b>from zero</b> the ideas you
 will meet in the levels: no hard formulas, five minutes of reading. You can
 reopen it anytime from the <b>Basics</b> button in the header.</p>
+<p class="honest">⚠️ <b>One thing first.</b> I put this lab together <b>with AI, to learn the
+subject myself</b>, in one evening: solver, models and texts were written by the AI on my
+directions, and I cannot guarantee that everything is correct. The tests agree with the
+formulas, but if a value or an explanation does not convince you, you are probably right:
+<a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank"
+rel="noopener">open an issue</a>. That is how it can become right.</p>
 
 <h3>Three words: voltage, current, resistance</h3>
 <p>Think of water in a pipe. <b>Voltage</b> (volts, V) is the

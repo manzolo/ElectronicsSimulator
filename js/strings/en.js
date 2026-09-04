@@ -101,6 +101,7 @@ export default {
   introTitle: 'Never held a soldering iron? Start here',
   introStart: 'Got it — take me to level 1 →',
 
+  honestNote: '⚠️ Built <b>with AI, to learn</b>, in one evening: it may contain errors. If a value or an explanation looks wrong, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">open an issue</a>.',
   segnala: 'Report a problem',
   segnalaTitle: 'Opens a GitHub issue prefilled with level, language, engine state and browser.',
   segnalaCorpo: '**What is wrong?**\n\nDescribe here: what you did, what you expected, what happened.\n\n---\n_Data collected from the page (check and correct if needed):_\n\n- Page: {0}\n- Level: {1}\n- Language: {2}\n- State: {3}\n- Browser: `{4}`\n',
@@ -135,7 +136,9 @@ export default {
     <h3>Limits are real</h3>
     <p>A ¼ W resistor with 0.3 W on it <b>burns</b> and goes open; an LED above 30 mA too; a Zener above 0.5 W, a transistor above 1.5 W or 1 A. In transients the stress is averaged (thermal inertia), so a few milliseconds of inrush do not kill a rectifier.</p>
     <h3>Levels</h3>
-    <p>Each level hands you a board (locked) and asks you to add or replace something. Verification measures the circuit on several cases — some shown, some hidden with different tolerances — so a design that holds passes, a lucky shot does not.</p>`,
+    <p>Each level hands you a board (locked) and asks you to add or replace something. Verification measures the circuit on several cases — some shown, some hidden with different tolerances — so a design that holds passes, a lucky shot does not.</p>
+    <h3>An honest note</h3>
+    <p>I <b>put this lab together with AI</b> (Claude Code), in one evening, <b>to learn the subject myself</b>: solver, models, levels and texts were written by the AI on my directions, and <b>I cannot guarantee that everything is correct</b>. The tests agree with the textbook formulas, but a test written by the same hand that wrote the code is not a review. If something looks wrong, <a href="https://github.com/manzolo/ElectronicsSimulator/issues/new" target="_blank" rel="noopener">open an issue</a>: that is how it can become right.</p>`,
 
   // ---- parser / engine error codes ----
   errUnknownElement: 'Unknown part “{0}”: parts start with R, C, L, V, I, D or Q.',

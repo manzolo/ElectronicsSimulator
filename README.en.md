@@ -30,6 +30,19 @@ other siblings: [EDU-SQL](https://github.com/manzolo/SqlSimulator),
 [EDU-GIT](https://github.com/manzolo/GitSimulator) and
 [EDU-BRANCH](https://github.com/manzolo/GitBranchingSimulator).
 
+## An honest note
+
+I **put this lab together with AI** (Claude Code), in one evening, **to learn the subject
+myself**: the solver, the device models, the levels and these very words were written by the AI
+on my directions, and **I am not in a position to guarantee that everything is correct**. The
+tests compare the engine with the textbook formulas (divider, 1/e, −3 dB, ripple ≈ I/(2f·C),
+I<sub>c</sub> = β·I<sub>b</sub>) and they pass — but a test written by the same hand that wrote
+the code is not a review. If you find a value that looks wrong, a model that is too simplified
+or an explanation that is off, **[open an
+issue](https://github.com/manzolo/ElectronicsSimulator/issues/new)**: that is exactly how this
+lab can become right. On the site, the "Report a problem" link prefills level, language and
+engine state for you.
+
 ## Why a hand-written engine
 
 This is the only lab in the series with a **continuous** rather than symbolic
